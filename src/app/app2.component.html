@@ -1,0 +1,8 @@
+<h1>Hello!</h1>
+<button (click)="reset()">Reset</button>
+<ul>
+  <li class="l-panel" [ngClass]="{'is-active': step.isActive, 'c-panel': !step.isActive}" *ngFor="let step of (task$|async)" (click)="selectTask(step.type)">
+    <h3>{{step.title}}</h3>
+    <button (click)="hideTask(step.type)">Hide Step</button>
+  </li>
+</ul>
