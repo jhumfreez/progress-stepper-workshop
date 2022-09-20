@@ -11,9 +11,11 @@ import { TaskType,Task } from './types';
 export class AppComponent {
   title = 'progress-stepper-workshop';
   task$: BehaviorSubject<Task[]>;
+  activeTask$: BehaviorSubject<Task|null>;
 
   constructor(private taskService: TaskService){
     this.task$ = this.taskService.task$;
+    this.activeTask$ = this.taskService.activeTask$;
   }
 
   selectTask(nextTaskType: TaskType){

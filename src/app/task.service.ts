@@ -40,13 +40,19 @@ export class TaskService {
   ];
 
   task$: BehaviorSubject<Task[]>;
+  activeTask$: BehaviorSubject<Task|null>;
 
   get visibleTasks(){
     return this.tasks.filter(x=>x.isVisible);
   }
 
+  get activeTask(){
+    return this.tasks.find(x=>x.isActive);
+  }
+
   constructor(){
-    this.task$ = new BehaviorSubject(this.visibleTasks);
+    this.task$ = new BehaviorSubject<Task[]>(this.visibleTasks);
+    this.activeTask$ = new BehaviorSubject<Task|null>(this.activeTask ?? null);
   }
 
   getTask(taskType: TaskType) {
@@ -67,6 +73,7 @@ export class TaskService {
     this.tasks.forEach(x=>{
       if(x.type === taskType){
         x.isVisible = false;
+        x.isActive = false;
       }
     });
     this.push();
@@ -83,6 +90,7 @@ export class TaskService {
 
   private push() {
     this.task$.next(this.visibleTasks);
+    this.activeTask$.next(this.activeTask ?? null);
   }
 
   private deactivateTasks(){
