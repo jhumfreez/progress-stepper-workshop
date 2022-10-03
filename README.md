@@ -1,3 +1,5 @@
+TODO: DELETE REPO -- another repo implements my plans for this one so it will not be maintained
+
 # ProgressStepperWorkshop
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
